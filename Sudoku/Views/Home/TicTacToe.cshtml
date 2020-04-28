@@ -1,17 +1,20 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
 <div id="FinalMessage">
-    <h3>Welcome to Jorge's Tic Tac Toe<br> Player X it's your turn.</h3>
+    <h3>Welcome to Jorge's Tic Tac Toe<br> Player X it's your turn</h3>
 </div>
 
 <div id="resetButton">
-    <button id="resetGame" onclick=restart(3)>Restart</button>
+    <button class="btn btn-default" id="resetGame" onclick=restart(3)>Restart</button>
 </div>
 
 <div id="Multiplayer">
-    <button id="multiplayer" onclick=multiplayer()>Online Multiplayer</button>
+    <button class="btn btn-default" id="multiplayer" onclick=multiplayer()>Multiplayer</button>
+</div>
+
+<div id="Single Player">
+    <button class="btn btn-default" id="single" onclick=single()>Single Player</button>
 </div>
 
 <div id="Grid">
@@ -23,6 +26,7 @@
     var turn = false;
     var array = [];
     var GameOver = false;
+    var Multiplayer = true;
     const size = 3;
 
 
@@ -74,6 +78,19 @@
         }
         else {
             checkTie();
+        }
+
+        if (!Multiplayer) {
+            ComputerPlays();
+            var result = checkWin(row, column);
+            if (result) {
+            FinalScreen(token);
+            GameOver = true;
+            return;
+        }
+            else {
+                checkTie();
+            }
         }
 
     }
@@ -192,12 +209,26 @@
         GameOver = false;
         if (turn) {
             $("#FinalMessage").empty();
-            $("#FinalMessage").append("<h3>Player O it's your turn</h3>");
+            $("#FinalMessage").append("<h3>Welcome to Jorge's Tic Tac Toe<br> Player O it's your turn</h3>");
         }
         else {
             $("#FinalMessage").empty();
-            $("#FinalMessage").append("<h3>Player X it's your turn</h3>");
+            $("#FinalMessage").append("<h3>Welcome to Jorge's Tic Tac Toe<br> Player X it's your turn</h3>");
         }
+    }
+
+    function single() {
+        restart(InitGrid);
+        $("#single").addClass("hide");
+        $("#multiplayer").removeClass("hide");
+        Multiplayer = false;
+    }
+
+    function multiplayer() {
+        restart(InitGrid);
+        $("#single").removeClass("hide");
+        $("#multiplayer").addClass("hide");
+        Multiplayer = true;
     }
 
     //Initializes grid

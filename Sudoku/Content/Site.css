@@ -77,11 +77,6 @@ div#FinalMessage {
     position: fixed;
 }
 
-#resetGame {
-    width: 100px;
-    height: 25px;
-}
-
 #resetButton {
     margin-left: 520px;
     margin-top: 110px;
@@ -90,12 +85,14 @@ div#FinalMessage {
 }
 
 #multiplayer {
-    width: 150px;
-    height: 50px;
+    margin-left: 512px;
+    margin-top: 250px;
+    float: right;
+    position: absolute;
 }
 
-#multiplayer {
-    margin-left: 500px;
+#single {
+    margin-left: 512px;
     margin-top: 250px;
     float: right;
     position: absolute;
@@ -105,3 +102,4 @@ button {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
